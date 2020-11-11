@@ -10,7 +10,7 @@ namespace EclassCDCD.Models
         [Key]
         [Column("AnswerID")]
         public Guid AnswerId { get; set; }
-        [Key]
+        
         [Column("QuestionID")]
         public int QuestionId { get; set; }
         [Required]

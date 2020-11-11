@@ -58,7 +58,7 @@ namespace EclassCDCD.Models
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Accounts_Departments");
             });
-
+          
             modelBuilder.Entity<AnswerDetails>(entity =>
             {
                 entity.HasKey(e => new { e.AnswerId, e.QuestionId });
