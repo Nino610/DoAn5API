@@ -48,6 +48,10 @@ namespace EclassCDCD
 				options.Password.RequireUppercase = false;
 				options.Password.RequiredLength = 4;
 			});
+			services.AddControllersWithViews()
+				.AddNewtonsoftJson(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+			);
 			services.AddCors();
 			//serviceProvider.GetService<CoreDbContext>().Database.EnsureCreated();
 			services.AddTransient<CoreDbContext>();

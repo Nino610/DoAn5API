@@ -40,14 +40,22 @@ namespace EclassCDCD.Controllers
 
             return employees;
         }
-
+        [HttpGet("seach")]
+        public async Task<IActionResult> Search(string keyword)
+        {
+            var plan = from t1 in _context.Plans.Include(x => x.Subject).Include(x => x.Employee)
+                       where t1.Subject.SubjectName.Contains(keyword)
+                       select t1;
+            return Ok(plan.First());
+        }
         // PUT: api/Employees/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        [Route("sua")]
-        public async Task<IActionResult> PutEmployees(string id, Employees employees)
+        [Route("sua/{id}")]
+        public async Task<IActionResult> PutEmployees( Employees employees)
         {
+            string id = "K1006";
             if (id != employees.EmployeeId)
             {
                 return BadRequest();

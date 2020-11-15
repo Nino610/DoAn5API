@@ -331,6 +331,9 @@ E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\Microsoft
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\FluentAssertions.dll
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\FluentAssertions.Json.dll
+E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\obj\Debug\netcoreapp3.1\EclassCDCD.csproj.CoreCompileInputs.cache
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\obj\Debug\netcoreapp3.1\EclassCDCD.MvcApplicationPartsAssemblyInfo.cs
 E:\Học Tập\CNTT\GITHUB\DoAn5API\EclassCDCD\obj\Debug\netcoreapp3.1\EclassCDCD.MvcApplicationPartsAssemblyInfo.cache
