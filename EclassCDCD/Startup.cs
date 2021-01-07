@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using EclassCDCD.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,7 +18,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
+using Microsoft.AspNetCore.Http.Features;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
+using Amazon.IdentityManagement.Model;
 
 namespace EclassCDCD
 {
@@ -39,7 +43,12 @@ namespace EclassCDCD
 			services.AddMvc(Options => Options.EnableEndpointRouting = false);
 			services.AddDbContext<CoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EclassCDCD")));
 			services.AddDbContext<AuthenticationContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("EclassCDCD")));
-			services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders(); ;
+			services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
+			//services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>().AddDefaultTokenProviders();
+			//services.AddScoped<RoleManager<Role>>();
+			//services.AddIdentity<ApplicationUser, IdentityRole>()
+			//.AddEntityFrameworkStores<CoreDbContext>();
+			
 			services.Configure<IdentityOptions>(options =>
 			{
 				options.Password.RequireDigit = false;
@@ -51,6 +60,13 @@ namespace EclassCDCD
 			services.AddControllersWithViews()
 				.AddNewtonsoftJson(options =>
 				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+			);
+			services.Configure<FormOptions>(o =>
+			{
+				o.ValueLengthLimit = int.MaxValue;
+				o.MultipartBodyLengthLimit = int.MaxValue;
+				o.MemoryBufferThreshold = int.MaxValue;
+			}
 			);
 			services.AddCors();
 			//serviceProvider.GetService<CoreDbContext>().Database.EnsureCreated();
@@ -88,7 +104,6 @@ namespace EclassCDCD
 			{
 				app.UseDeveloperExceptionPage();
 			}
-
 			app.UseHttpsRedirection();
 			app.UseAuthentication();
 			app.UseRouting();
@@ -99,6 +114,13 @@ namespace EclassCDCD
 			.AllowAnyHeader()
 			//.WithOrigins("http://localhost:4200")
 				);
+			app.UseStaticFiles();
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+				RequestPath = new Microsoft.AspNetCore.Http.PathString("/Resources")
+			}
+			);
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

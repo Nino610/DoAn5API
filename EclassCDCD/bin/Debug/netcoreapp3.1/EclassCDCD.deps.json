@@ -24,10 +24,12 @@
     ".NETCoreApp,Version=v3.1": {
       "EclassCDCD/1.0.0": {
         "dependencies": {
+          "AWSSDK": "2.3.55.2",
           "EntityFramework": "6.4.4",
           "ExcelDataReader": "3.6.0",
           "ExcelDataReader.DataSet": "3.6.0",
           "FluentAssertions.Json": "5.5.0",
+          "Microsoft.AspNet.Identity.EntityFramework": "2.2.3",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "3.1.9",
@@ -320,6 +322,17 @@
           "EclassCDCD.dll": {}
         }
       },
+      "AWSSDK/2.3.55.2": {
+        "runtime": {
+          "lib/net45/AWSSDK.dll": {
+            "assemblyVersion": "2.3.55.2",
+            "fileVersion": "2.3.55.2"
+          }
+        },
+        "compile": {
+          "lib/net45/AWSSDK.dll": {}
+        }
+      },
       "EntityFramework/6.4.4": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
@@ -398,6 +411,32 @@
         },
         "compile": {
           "lib/netstandard1.4/FluentAssertions.Json.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Identity.Core/2.2.3": {
+        "runtime": {
+          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.2.3.11125"
+          }
+        },
+        "compile": {
+          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Identity.EntityFramework/2.2.3": {
+        "dependencies": {
+          "EntityFramework": "6.4.4",
+          "Microsoft.AspNet.Identity.Core": "2.2.3"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.2.3.11125"
+          }
+        },
+        "compile": {
+          "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication/2.2.0": {
@@ -4515,6 +4554,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AWSSDK/2.3.55.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zy/6psTOx9c8LaZqL1tUtiGKMpd35b16TNRctz/N6Qc6hqFeOjyZ5WVhn89szJkkZtotcMFyfq58Y2RfyRxxUg==",
+      "path": "awssdk/2.3.55.2",
+      "hashPath": "awssdk.2.3.55.2.nupkg.sha512"
+    },
     "EntityFramework/6.4.4": {
       "type": "package",
       "serviceable": true,
@@ -4549,6 +4595,20 @@
       "sha512": "sha512-mJsrCdps6H+aqragv6hF39op7QFTc93TIDNiV5D9CXAM/9muMPuCbxbNQPf9qhiEE2ZI8Z0qKQcqB0ZZS5ohcg==",
       "path": "fluentassertions.json/5.5.0",
       "hashPath": "fluentassertions.json.5.5.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Identity.Core/2.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Mv5FpoaxspE8hlWLE4r1IdZtovg/OyFgVRhxQbx47J4sqdLImN1hnM1lnwCj+/wLmqtqFk/RYMoZ5GAcwm/00g==",
+      "path": "microsoft.aspnet.identity.core/2.2.3",
+      "hashPath": "microsoft.aspnet.identity.core.2.2.3.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Identity.EntityFramework/2.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dt4XZChjw3a6jE66Yd6LkF9omspxi0A9lJpwBZz8Wl1sabOS6dlLP1OOTVuUjtPaoAshjoIzvS6DFRQdPyq55g==",
+      "path": "microsoft.aspnet.identity.entityframework/2.2.3",
+      "hashPath": "microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication/2.2.0": {
       "type": "package",

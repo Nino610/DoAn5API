@@ -24,6 +24,7 @@ namespace EclassCDCD.Controllers
     public class AccountsController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
+        private UserManager<Accounts> _userManager1;
         private SignInManager<ApplicationUser> _signInManager;
         private readonly CoreDbContext _context;
         private readonly ApplicationSetting _appSetting;
@@ -136,16 +137,24 @@ namespace EclassCDCD.Controllers
         [HttpPost]
         [Route("login")]
         //post
-        public async Task<IActionResult> Login( Employees account)
+        public async Task<IActionResult> Login( Accounts account)
         {
-            var user = await _context.Employees.Where(x => x.EmployeeId == account.EmployeeId && x.Password == account.Password).SingleOrDefaultAsync();
+            //var user1 = await _userManager.FindByIdAsync(account.Username);
+            var user = await _context.Accounts.Where(x => x.Username == account.Username && x.Password == account.Password).SingleOrDefaultAsync();
             if (user != null)
             {
+               // var role = await _userManager.GetRolesAsync(user1);
+               // var role = await _userManager1.GetRolesAsync(user);
+                var role = user.Role;
+                IdentityOptions _options = new IdentityOptions();
+               
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("EmployeeId", user.EmployeeId.ToString())
+                        new Claim("Username", user.Username.ToString()),
+                         new Claim(ClaimTypes.Role, user.Role),
+                //new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
                     }),
                     //Expires = DateTime.UtcNow.AddMinutes(5),
                     Expires = DateTime.UtcNow.AddDays(1),
@@ -156,15 +165,9 @@ namespace EclassCDCD.Controllers
                 var token = tokenHandler.WriteToken(securityToken);
                 return Ok(new
                 {
-                    employeeId = user.EmployeeId,
+                    userName = user.Username,
                     password = user.Password,
-                    fullName = user.FullName,
-                    gender = user.Gender,
-                    birthday = user.Birthday,
-                    address = user.Address,
-                    email = user.Email,
-                    phoneNumber = user.PhoneNumber,
-                    photo=user.Photo,
+                    role = user.Role,
                     departmentId = user.DepartmentId,
                     token
                 });

@@ -53,9 +53,8 @@ namespace EclassCDCD.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         [Route("sua/{id}")]
-        public async Task<IActionResult> PutEmployees( Employees employees)
+        public async Task<IActionResult> PutEmployees(String id, Employees employees)
         {
-            string id = "K1006";
             if (id != employees.EmployeeId)
             {
                 return BadRequest();
@@ -86,6 +85,7 @@ namespace EclassCDCD.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [Route("them")]
         public async Task<ActionResult<Employees>> PostEmployees(Employees employees)
         {
             _context.Employees.Add(employees);
@@ -110,6 +110,7 @@ namespace EclassCDCD.Controllers
 
         // DELETE: api/Employees/5
         [HttpDelete("{id}")]
+        [Route("xoa/{id}")]
         public async Task<ActionResult<Employees>> DeleteEmployees(string id)
         {
             var employees = await _context.Employees.FindAsync(id);

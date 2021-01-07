@@ -13,9 +13,9 @@ namespace EclassCDCD.Models
 	public class ApplicationUser:IdentityUser
 	{
         //public int Id { get; set; }
-        //public string Username { get; set; }
+        public string Username { get; set; }
         //public string Password { get; set; }
-        //public string Role { get; set; }
+        public string Role { get; set; }
        
         //[StringLength(10)]
         public string EmployeeId { get; set; }
@@ -43,5 +43,7 @@ namespace EclassCDCD.Models
         [ForeignKey(nameof(DepartmentId))]
         //[InverseProperty(nameof(Departments.Accounts))]
         public virtual Departments Department { get; set; }
-    }
+
+		
+	}
 }
