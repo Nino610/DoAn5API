@@ -101,5 +101,27 @@ namespace EclassCDCD.Controllers
         {
             return _context.Plans.Any(e => e.PlanId == id);
         }
-    }
+        public void Count()
+        {
+            
+
+        }
+        [HttpGet]
+        [Route("thongke/{EmployeeId}/{ClassID}/{SubjectID}")]
+		public IQueryable thongke(string EmployeeId, string ClassID, string SubjectID)
+		{
+			var tmp = (from t1 in _context.Plans
+                      join q in _context.Questions.Include(s=>s.Options) on t1.CateId equals q.CateId
+                      join e in _context.Employees on t1.EmployeeId equals e.EmployeeId
+                      join s in _context.Subjects on t1.SubjectId equals s.SubjectId
+                      where t1.CateId =="SV" 
+                        && t1.EmployeeId== EmployeeId 
+                        && t1.ClassId== ClassID
+                        && t1.SubjectId== SubjectID
+                       select new { e.FullName, s.SubjectName,q.Content, q.Options }
+
+                      );
+            return tmp;
+		}
+	}
 }
